@@ -28,12 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            pictureBox1 = new PictureBox();
+            pistola1 = new GameObjects.Pistola();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = Properties.Resources.flecha;
+            pictureBox1.Location = new Point(12, 338);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(776, 85);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // pistola1
+            // 
+            pistola1.Anchor = AnchorStyles.Bottom;
+            pistola1.BackColor = Color.Transparent;
+            pistola1.BackgroundImageLayout = ImageLayout.None;
+            pistola1.ForeColor = Color.Transparent;
+            pistola1.Location = new Point(352, 337);
+            pistola1.Name = "pistola1";
+            pistola1.Size = new Size(83, 101);
+            pistola1.TabIndex = 1;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(pistola1);
+            Controls.Add(pictureBox1);
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private PictureBox pictureBox1;
+        private GameObjects.Pistola pistola1;
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirWar.GameObjects
+namespace AirWar
 {
-    internal class player : UserControl
+    internal class Core
     {
     }
 }
