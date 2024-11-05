@@ -12,9 +12,24 @@ namespace AirWar.GameObjects
 {
     public partial class Pistola : UserControl
     {
+        private int speed = 3;
         public Pistola()
         {
             InitializeComponent();
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            Point p = this.Location;
+
+            float tempX = p.X + speed;
+
+            if (tempX >= 650 || tempX <= 40)
+            {
+                speed = -speed;
+            }
+
+            Location = new Point(p.X + speed, p.Y);
         }
     }
 }

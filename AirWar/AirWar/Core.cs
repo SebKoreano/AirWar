@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AirWar
 {
-    internal class Core
+    public static class Core
     {
+        
     }
 }
