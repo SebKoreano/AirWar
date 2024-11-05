@@ -121,7 +121,7 @@
   <data name="pistola1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAADwdJREFUeF7tnXdsXFkVhzfFPY5r3B3bcRz3HpfEceIWp2zqpuwmSzbZkDjZ3azI
+        vAAADrwBlbxySQAADwdJREFUeF7tnXdsXFkVhzfFPY5r3B3bcRz3HpfEceIWp2zqpuwmSzbZkDjZ3azI
         SlsEAiRAQvyBRJV2V4IFRPsDhBAgQLBIIFEEQqJKIIpEkehFFBH65XzHc2fvPL8Zz4zHySy+R/rkV8fz
         zu/dfu6du7x5ezHYQeHDwpuEx4RTwohQI2wUvN0GqxBahePC5wUTh38IPxI+J7xbeK1wRZgXmgRvaVqB
         cI+AU38mhDnf5OXlme3bWszWhvrQ8wE+KnhL054WwpxqNm7cqH/Xr19vzt17r5nZO2mmYWrKjI2Omp7u
@@ -186,21 +186,6 @@
         IoX6s888a554/HEzPzcXnTcS4ccC7bKst/UCc8qnBX7z47KwINCqPS/cLYwIdYLbiLtdxndQp1KOkLWS
         zbIfFAQYE+mSyoiTusminhY2Cd4yZO8QrIOj4PS62toYaAA71zAtm0UKvGXYaI+QVbrOTgSpggX9SwRv
         q2Q1An1fQHb6ngQcE7z9/9tdd/0PjgWaEf6uJOEAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="bala1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAABGdBTUEAALGPC/xhBQAAAhlJREFUOE+F
-        lLtuFUEMhj27SwiRaKChBAkJ6ZSkSwSiBAq6iFegpafgBSgoKZGgTUuVHEVEoUJI0CAoeIZQ5AI5J3y2
-        xzOzyYkY6VvPxf/Ynt1ZWdw2eh6vJclX7LPVVblk0/9p1+E3nCpJZA6/6K/ABe2BDDz3wUWpsUk+078C
-        C9uU3Wc4aSSDuRIZuwFaxqjdgEORhKNiUYrQScfYc1F3YAZjwdl+3z+i34G1JCkdYRtnj6r1tSnDT1gC
-        a3dY/IN154yP2SDl1HU+yXwyqcIXOJ5gPZpFaWottnANLM8PPOeeYksVWgY17bugLW3zmMd7c1zkkS3F
-        ujbIGtba1OsI57E4IsYmsA7W9FWMdnVxTlHJa3l8D6x9BHfImMPIOeq0qBcLR2nrBuAZMT+4kNRldywo
-        tTg5son9m70P0jHYLYvFMTYATS/mkn2WFrFjsKcCryWElTJvpNkggwl7ct1T53qqEY3++U30C0Pol/eT
-        L+jJuUCjnIkU/b9xOPo/yYcTi1Vs44iqWUniMgzlA1iGfXMIiqhEUvRgtoD7+JLHIA/b+ixSjLE1ZduE
-        v8TyLexkqZPuvS5YfVngzvkbVbHNm/CYn84TrF3KdzYZURphjJv1o156hLflMoO3xSF2bjZRmgwO+c89
-        Zk401VdMnuCsxdcLvUBMOQf0y31MHOtNDus5/U0cviD6Dj8Yf8NOsW+o7elV+9NL9w9Z7SidDfy7hgAA
-        AABJRU5ErkJggg==
 </value>
   </data>
 </root>
