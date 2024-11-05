@@ -7,7 +7,7 @@ namespace AirWar
         private bool buttonDown;
         private int charge { get; set; }
 
-    public Form1()
+        public Form1()
         {
             InitializeComponent();
         }

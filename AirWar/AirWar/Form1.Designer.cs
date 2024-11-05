@@ -58,7 +58,7 @@
             pistola1.BackgroundImage = (Image)resources.GetObject("pistola1.BackgroundImage");
             pistola1.BackgroundImageLayout = ImageLayout.None;
             pistola1.ForeColor = Color.Transparent;
-            pistola1.Location = new Point(644, 337);
+            pistola1.Location = new Point(425, 337);
             pistola1.Margin = new Padding(0, 5, 0, 5);
             pistola1.Name = "pistola1";
             pistola1.Size = new Size(83, 101);
@@ -69,7 +69,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(276, 150);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 3;
@@ -78,7 +78,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(468, 150);
+            label2.Location = new Point(727, 9);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 4;
