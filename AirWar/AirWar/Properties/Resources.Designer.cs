@@ -63,6 +63,16 @@ namespace AirWar.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Avion {
+            get {
+                object obj = ResourceManager.GetObject("Avion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bala {
             get {
                 object obj = ResourceManager.GetObject("bala", resourceCulture);
@@ -86,6 +96,16 @@ namespace AirWar.Properties {
         internal static System.Drawing.Bitmap pistola2 {
             get {
                 object obj = ResourceManager.GetObject("pistola2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Portaviones {
+            get {
+                object obj = ResourceManager.GetObject("Portaviones", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
