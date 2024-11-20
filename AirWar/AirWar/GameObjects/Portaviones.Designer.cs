@@ -50,7 +50,7 @@
             BackColor = Color.Transparent;
             Controls.Add(pictureBox1);
             Name = "Portaviones";
-            Size = new Size(109, 109);
+            Size = new Size(71, 70);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

@@ -49,6 +49,7 @@
             Margin = new Padding(0, 5, 0, 5);
             Name = "Pistola";
             Size = new Size(84, 100);
+            Load += Pistola_Load;
             ResumeLayout(false);
         }
 

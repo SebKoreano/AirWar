@@ -17,6 +17,8 @@ namespace AirWar
         public Form1()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
             random = new Random();
             grafo = new Grafo();
             gameObjects = new List<Control>();
@@ -171,6 +173,11 @@ namespace AirWar
                     g.DrawLine(pen, origen, destinoPoint);
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

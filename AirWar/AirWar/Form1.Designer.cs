@@ -58,7 +58,7 @@
             pistola1.BackgroundImage = (Image)resources.GetObject("pistola1.BackgroundImage");
             pistola1.BackgroundImageLayout = ImageLayout.None;
             pistola1.ForeColor = Color.Transparent;
-            pistola1.Location = new Point(425, 337);
+            pistola1.Location = new Point(551, 337);
             pistola1.Margin = new Padding(0, 5, 0, 5);
             pistola1.Name = "pistola1";
             pistola1.Size = new Size(83, 101);
@@ -95,6 +95,7 @@
             Controls.Add(pictureBox1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             MouseClick += btn1_MouseClick;
             MouseDown += btn1_MouseDown;
             MouseUp += btn1_MouseUp;

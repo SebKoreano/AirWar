@@ -5,11 +5,11 @@ namespace AirWar
 {
     public class Grafo
     {
-        private Dictionary<int, List<int>> adjList;
+        private CustomDictionary<int, List<int>> adjList;
 
         public Grafo()
         {
-            adjList = new Dictionary<int, List<int>>();
+            adjList = new CustomDictionary<int, List<int>>();
         }
 
         // Añadir un vértice al grafo

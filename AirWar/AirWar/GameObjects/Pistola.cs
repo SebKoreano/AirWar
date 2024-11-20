@@ -8,6 +8,8 @@
         public Pistola()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
         }
 
         // Método que actualiza la posición del objeto Pistola
@@ -24,6 +26,11 @@
 
             // Actualiza la ubicación del objeto
             Location = new Point(p.X + speed, p.Y);
+        }
+
+        private void Pistola_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
