@@ -30,6 +30,7 @@
 
             // Actualiza la ubicación de la bala
             Location = new Point(p.X, p.Y - speed);
+            this.BringToFront();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace AirWar
         private Random random;
         private Grafo grafo;
         private List<Control> gameObjects;
+        private int timer = 1000;
 
         public Form1()
         {
@@ -178,6 +179,17 @@ namespace AirWar
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        //Metodo para regular el tiempo de juego
+        private void Timer(object sender, EventArgs e)
+        {
+            label4.Text = timer.ToString();
+            timer--;
+            if (timer == 0)
+            {
+                MessageBox.Show("Game Over");
+            }
         }
     }
 }
