@@ -17,6 +17,14 @@ namespace AirWar.GameObjects
             InitializeComponent();
         }
 
+        public Avion CreateAvion()
+        {
+            Avion avion = new Avion();
+            avion.Location = new Point(this.Location.X + this.Width / 2 - avion.Width / 2, this.Location.Y - avion.Height);
+            this.Parent.Controls.Add(avion);
+            return avion;
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 

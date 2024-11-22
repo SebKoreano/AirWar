@@ -13,6 +13,8 @@ namespace AirWar
         private CustomDictionary<(int, int), int> routeWeights;
         private Bitmap routesBitmap;
         private System.Windows.Forms.Timer chargeTimer;
+        private System.Windows.Forms.Timer avionTimer;
+        private List<Avion> aviones;
 
         public Form1()
         {
@@ -33,6 +35,14 @@ namespace AirWar
             chargeTimer = new System.Windows.Forms.Timer();
             chargeTimer.Interval = 10; // Intervalo de 10 ms
             chargeTimer.Tick += ChargeTimer_Tick;
+
+            aviones = new List<Avion>();
+
+            // Inicializar el Timer para mover los aviones
+            avionTimer = new System.Windows.Forms.Timer();
+            avionTimer.Interval = 50; // Intervalo de 50 ms
+            avionTimer.Tick += AvionTimer_Tick;
+            avionTimer.Start();
         }
 
         // Evento que se dispara al hacer clic en pictureBox1
@@ -209,7 +219,16 @@ namespace AirWar
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Crear aviones desde Portaviones y PortavionesAgua
+            Portaviones portaviones = new Portaviones();
+            portaviones.Location = new Point(100, 400);
+            this.Controls.Add(portaviones);
+            aviones.Add(portaviones.CreateAvion());
 
+            PortavionesAgua portavionesAgua = new PortavionesAgua();
+            portavionesAgua.Location = new Point(300, 400);
+            this.Controls.Add(portavionesAgua);
+            aviones.Add(portavionesAgua.CreateAvion());
         }
 
         //Metodo para regular el tiempo de juego
@@ -245,6 +264,19 @@ namespace AirWar
             {
                 chargeTimer.Stop();
             }
+        }
+
+        private void AvionTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (var avion in aviones)
+            {
+                avion.Location = new Point(avion.Location.X, avion.Location.Y - 5);
+                if (avion.Location.Y + avion.Height < 0)
+                {
+                    this.Controls.Remove(avion);
+                }
+            }
+            aviones.RemoveAll(a => a.Location.Y + a.Height < 0);
         }
     }
 }
