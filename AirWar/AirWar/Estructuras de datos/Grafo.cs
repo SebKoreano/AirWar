@@ -5,11 +5,11 @@ namespace AirWar
 {
     public class Grafo
     {
-        private CustomDictionary<int, List<int>> adjList;
+        private CustomDictionary<int, LinkedList<int>> adjList;
 
         public Grafo()
         {
-            adjList = new CustomDictionary<int, List<int>>();
+            adjList = new CustomDictionary<int, LinkedList<int>>();
         }
 
         // Añadir un vértice al grafo
@@ -17,7 +17,7 @@ namespace AirWar
         {
             if (!adjList.ContainsKey(vertice))
             {
-                adjList[vertice] = new List<int>();
+                adjList[vertice] = new LinkedList<int>();
             }
         }
 
@@ -31,13 +31,13 @@ namespace AirWar
         }
 
         // Obtener la lista de adyacencia de un vértice
-        public List<int> GetAdyacentes(int vertice)
+        public LinkedList<int> GetAdyacentes(int vertice)
         {
             if (adjList.ContainsKey(vertice))
             {
                 return adjList[vertice];
             }
-            return new List<int>();
+            return new LinkedList<int>();
         }
 
         // Obtener todos los vértices del grafo
