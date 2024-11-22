@@ -7,7 +7,7 @@ namespace AirWar
     public class Node<T>
     {
         public T Data { get; set; }
-        public Node<T> Next { get; set; }
+        public Node<T>? Next { get; set; }
 
         public Node(T data)
         {
@@ -19,11 +19,13 @@ namespace AirWar
     // Lista enlazada simple
     public class LinkedList<T> : IEnumerable<T>
     {
-        private Node<T> head;
+        private Node<T>? head;
+        public int Count { get; private set; }
 
         public LinkedList()
         {
             head = null;
+            Count = 0;
         }
 
         public void Add(T data)
@@ -42,14 +44,15 @@ namespace AirWar
                 }
                 current.Next = newNode;
             }
+            Count++;
         }
 
         public bool Contains(T data)
         {
-            Node<T> current = head;
+            Node<T>? current = head;
             while (current != null)
             {
-                if (current.Data.Equals(data))
+                if (current.Data != null && current.Data.Equals(data))
                 {
                     return true;
                 }
@@ -60,11 +63,11 @@ namespace AirWar
 
         public int IndexOf(T data)
         {
-            Node<T> current = head;
+            Node<T>? current = head;
             int index = 0;
             while (current != null)
             {
-                if (current.Data.Equals(data))
+                if (current.Data != null && current.Data.Equals(data))
                 {
                     return index;
                 }
@@ -78,7 +81,7 @@ namespace AirWar
         {
             get
             {
-                Node<T> current = head;
+                Node<T>? current = head;
                 int currentIndex = 0;
                 while (current != null)
                 {
@@ -93,7 +96,7 @@ namespace AirWar
             }
             set
             {
-                Node<T> current = head;
+                Node<T>? current = head;
                 int currentIndex = 0;
                 while (current != null)
                 {
@@ -111,7 +114,7 @@ namespace AirWar
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node<T> current = head;
+            Node<T>? current = head;
             while (current != null)
             {
                 yield return current.Data;

@@ -12,7 +12,7 @@ namespace AirWar
         private int charge { get; set; }
         private Random random;
         private Grafo grafo;
-        private List<Control> gameObjects;
+        private LinkedList<Control> gameObjects;
         private int timer = 1000;
 
         public Form1()
@@ -22,7 +22,7 @@ namespace AirWar
             this.BackColor = Color.Transparent;
             random = new Random();
             grafo = new Grafo();
-            gameObjects = new List<Control>();
+            gameObjects = new LinkedList<Control>();
             AddRandomPortavionesAguaAndPortaviones();
             CreateRoutes();
         }
