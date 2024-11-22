@@ -14,6 +14,8 @@ namespace AirWar
         private Grafo grafo;
         private LinkedList<Control> gameObjects;
         private int timer = 1000;
+        private Dictionary<(int, int), int> routeWeights;
+        private Bitmap routesBitmap;
 
         public Form1()
         {
@@ -23,8 +25,12 @@ namespace AirWar
             random = new Random();
             grafo = new Grafo();
             gameObjects = new LinkedList<Control>();
+            routeWeights = new Dictionary<(int, int), int>();
             AddRandomPortavionesAguaAndPortaviones();
             CreateRoutes();
+            routesBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
+            DrawRoutes(); // Dibujar las rutas una vez después de crear las rutas
+            this.BackgroundImage = routesBitmap;
         }
 
         // Evento que se dispara al hacer clic en pictureBox1
@@ -159,26 +165,46 @@ namespace AirWar
                 if (destino != i)
                 {
                     grafo.AddArista(i, destino);
+                    int weight = CalculateRouteWeight(i, destino);
+                    routeWeights[(i, destino)] = weight;
                 }
             }
         }
 
-        // Sobrescribir el método OnPaint para dibujar las rutas
-        protected override void OnPaint(PaintEventArgs e)
+        private void DrawRoutes()
         {
-            base.OnPaint(e);
-            Graphics g = e.Graphics;
-            Pen pen = new Pen(Color.Black, 2);
-
-            foreach (var vertice in grafo.GetVertices())
+            using (Graphics g = Graphics.FromImage(routesBitmap))
             {
-                Point origen = new Point(gameObjects[vertice].Location.X + gameObjects[vertice].Width / 2, gameObjects[vertice].Location.Y + gameObjects[vertice].Height / 2);
-                foreach (var destino in grafo.GetAdyacentes(vertice))
+                Pen pen = new Pen(Color.Black, 2);
+
+                foreach (var vertice in grafo.GetVertices())
                 {
-                    Point destinoPoint = new Point(gameObjects[destino].Location.X + gameObjects[destino].Width / 2, gameObjects[destino].Location.Y + gameObjects[destino].Height / 2);
-                    g.DrawLine(pen, origen, destinoPoint);
+                    Point origen = new Point(gameObjects[vertice].Location.X + gameObjects[vertice].Width / 2, gameObjects[vertice].Location.Y + gameObjects[vertice].Height / 2);
+                    foreach (var destino in grafo.GetAdyacentes(vertice))
+                    {
+                        Point destinoPoint = new Point(gameObjects[destino].Location.X + gameObjects[destino].Width / 2, gameObjects[destino].Location.Y + gameObjects[destino].Height / 2);
+                        g.DrawLine(pen, origen, destinoPoint);
+
+                        // Dibujar el peso de la ruta
+                        int weight = routeWeights[(vertice, destino)];
+                        Point midPoint = new Point((origen.X + destinoPoint.X) / 2, (origen.Y + destinoPoint.Y) / 2);
+                        DrawWeightLabel(midPoint, weight);
+                    }
                 }
             }
+        }
+
+        private void DrawWeightLabel(Point location, int weight)
+        {
+            Label weightLabel = new Label
+            {
+                Text = weight.ToString(),
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = location
+            };
+            this.Controls.Add(weightLabel);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -195,6 +221,18 @@ namespace AirWar
             {
                 MessageBox.Show("Game Over");
             }
+        }
+        private int CalculateRouteWeight(int origen, int destino)
+        {
+            Control origenControl = gameObjects[origen];
+            Control destinoControl = gameObjects[destino];
+            double distance = Math.Sqrt(Math.Pow(destinoControl.Location.X - origenControl.Location.X, 2) + Math.Pow(destinoControl.Location.Y - origenControl.Location.Y, 2));
+            int baseWeight = (int)(distance / 10); // Peso basado en la distancia
+
+            // Peso adicional basado en el tipo de destino
+            int additionalWeight = destinoControl is PortavionesAgua ? 50 : 20;
+
+            return baseWeight + additionalWeight;
         }
     }
 }
