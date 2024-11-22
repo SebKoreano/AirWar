@@ -13,6 +13,7 @@ namespace AirWar
         private Random random;
         private Grafo grafo;
         private List<Control> gameObjects;
+        private int timer = 1000;
 
         public Form1()
         {
@@ -22,7 +23,7 @@ namespace AirWar
             random = new Random();
             grafo = new Grafo();
             gameObjects = new List<Control>();
-            AddRandomAvionesAndPortaviones();
+            AddRandomPortavionesAguaAndPortaviones();
             CreateRoutes();
         }
 
@@ -65,6 +66,11 @@ namespace AirWar
         // Crea una nueva instancia de Bala y la agrega al formulario
         private void CreateAndAddBala()
         {
+            if (charge / 300 < 1)
+            {
+                return;
+            }
+
             Bala bala = new Bala(charge / 300);
             bala.Location = new Point(15 + pistola1.Location.X + pistola1.Width / 2, pistola1.Location.Y);
             bala.Size = new Size(18, 32);
@@ -80,31 +86,31 @@ namespace AirWar
         }
 
         // Añade aviones y portaviones en posiciones aleatorias
-        private void AddRandomAvionesAndPortaviones()
+        private void AddRandomPortavionesAguaAndPortaviones()
         {
             for (int i = 0; i < 5; i++)
             {
-                AddRandomAvion();
+                AddRandomPortavionesAgua();
                 AddRandomPortaviones();
             }
         }
 
         // Añade un avión en una posición aleatoria
-        private void AddRandomAvion()
+        private void AddRandomPortavionesAgua()
         {
-            Avion avion = new Avion();
+            PortavionesAgua portavionesagua = new PortavionesAgua();
             Point location;
             do
             {
-                location = new Point(random.Next(0, this.ClientSize.Width - avion.Width), random.Next(0, this.ClientSize.Height - avion.Height));
-            } while (IsOverlapping(location, avion.Size));
+                location = new Point(random.Next(0, this.ClientSize.Width - portavionesagua.Width), random.Next(0, this.ClientSize.Height - portavionesagua.Height));
+            } while (IsOverlapping(location, portavionesagua.Size));
 
-            avion.Location = location;
-            avion.Size = new Size(70, 69);
-            avion.BackgroundImage = Properties.Resources.Avion;
-            avion.BackgroundImageLayout = ImageLayout.Stretch;
-            this.Controls.Add(avion);
-            gameObjects.Add(avion);
+            portavionesagua.Location = location;
+            portavionesagua.Size = new Size(70, 69);
+            portavionesagua.BackgroundImage = Properties.Resources.PortavionesAgua;
+            portavionesagua.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Controls.Add(portavionesagua);
+            gameObjects.Add(portavionesagua);
         }
 
         // Añade un portaviones en una posición aleatoria
@@ -178,6 +184,17 @@ namespace AirWar
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        //Metodo para regular el tiempo de juego
+        private void Timer(object sender, EventArgs e)
+        {
+            label4.Text = timer.ToString();
+            timer--;
+            if (timer == 0)
+            {
+                MessageBox.Show("Game Over");
+            }
         }
     }
 }
