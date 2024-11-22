@@ -16,6 +16,7 @@ namespace AirWar
         private int timer = 1000;
         private Dictionary<(int, int), int> routeWeights;
         private Bitmap routesBitmap;
+        private System.Windows.Forms.Timer chargeTimer;
 
         public Form1()
         {
@@ -31,6 +32,11 @@ namespace AirWar
             routesBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
             DrawRoutes(); // Dibujar las rutas una vez después de crear las rutas
             this.BackgroundImage = routesBitmap;
+
+            // Inicializar el Timer
+            chargeTimer = new System.Windows.Forms.Timer();
+            chargeTimer.Interval = 10; // Intervalo de 10 ms
+            chargeTimer.Tick += ChargeTimer_Tick;
         }
 
         // Evento que se dispara al hacer clic en pictureBox1
@@ -50,34 +56,26 @@ namespace AirWar
         {
             buttonDown = true;
             charge = 0;
-
-            // Bucle que incrementa la carga mientras el botón está presionado
-            do
-            {
-                charge++;
-                label1.Text = charge.ToString();
-
-                Application.DoEvents();
-            } while (buttonDown);
+            chargeTimer.Start();
         }
 
         // Evento que se dispara al soltar el botón del mouse en btn1
         private void btn1_MouseUp(object sender, MouseEventArgs e)
         {
+            buttonDown = false;
             CreateAndAddBala();
             UpdateLabel2();
-            buttonDown = false;
         }
 
         // Crea una nueva instancia de Bala y la agrega al formulario
         private void CreateAndAddBala()
         {
-            if (charge / 300 < 1)
+            if (charge / 10 < 1)
             {
                 return;
             }
 
-            Bala bala = new Bala(charge / 300);
+            Bala bala = new Bala(charge / 10);
             bala.Location = new Point(15 + pistola1.Location.X + pistola1.Width / 2, pistola1.Location.Y);
             bala.Size = new Size(18, 32);
             bala.BackgroundImage = Properties.Resources.bala;
@@ -88,7 +86,7 @@ namespace AirWar
         // Actualiza el texto de label2 con el valor de la carga
         private void UpdateLabel2()
         {
-            label2.Text = (charge / 300).ToString();
+            label2.Text = (charge / 10).ToString();
         }
 
         // Añade aviones y portaviones en posiciones aleatorias
@@ -233,6 +231,18 @@ namespace AirWar
             int additionalWeight = destinoControl is PortavionesAgua ? 50 : 20;
 
             return baseWeight + additionalWeight;
+        }
+        private void ChargeTimer_Tick(object sender, EventArgs e)
+        {
+            if (buttonDown)
+            {
+                charge++;
+                label1.Text = charge.ToString();
+            }
+            else
+            {
+                chargeTimer.Stop();
+            }
         }
     }
 }
