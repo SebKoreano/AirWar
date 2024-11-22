@@ -23,7 +23,7 @@ namespace AirWar
             random = new Random();
             grafo = new Grafo();
             gameObjects = new List<Control>();
-            AddRandomAvionesAndPortaviones();
+            AddRandomPortavionesAguaAndPortaviones();
             CreateRoutes();
         }
 
@@ -81,31 +81,31 @@ namespace AirWar
         }
 
         // Añade aviones y portaviones en posiciones aleatorias
-        private void AddRandomAvionesAndPortaviones()
+        private void AddRandomPortavionesAguaAndPortaviones()
         {
             for (int i = 0; i < 5; i++)
             {
-                AddRandomAvion();
+                AddRandomPortavionesAgua();
                 AddRandomPortaviones();
             }
         }
 
         // Añade un avión en una posición aleatoria
-        private void AddRandomAvion()
+        private void AddRandomPortavionesAgua()
         {
-            Avion avion = new Avion();
+            PortavionesAgua portavionesagua = new PortavionesAgua();
             Point location;
             do
             {
-                location = new Point(random.Next(0, this.ClientSize.Width - avion.Width), random.Next(0, this.ClientSize.Height - avion.Height));
-            } while (IsOverlapping(location, avion.Size));
+                location = new Point(random.Next(0, this.ClientSize.Width - portavionesagua.Width), random.Next(0, this.ClientSize.Height - portavionesagua.Height));
+            } while (IsOverlapping(location, portavionesagua.Size));
 
-            avion.Location = location;
-            avion.Size = new Size(70, 69);
-            avion.BackgroundImage = Properties.Resources.Avion;
-            avion.BackgroundImageLayout = ImageLayout.Stretch;
-            this.Controls.Add(avion);
-            gameObjects.Add(avion);
+            portavionesagua.Location = location;
+            portavionesagua.Size = new Size(70, 69);
+            portavionesagua.BackgroundImage = Properties.Resources.PortavionesAgua;
+            portavionesagua.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Controls.Add(portavionesagua);
+            gameObjects.Add(portavionesagua);
         }
 
         // Añade un portaviones en una posición aleatoria
