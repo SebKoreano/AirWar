@@ -1,8 +1,4 @@
 using AirWar.GameObjects;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace AirWar
 {
@@ -14,7 +10,7 @@ namespace AirWar
         private Grafo grafo;
         private LinkedList<Control> gameObjects;
         private int timer = 1000;
-        private Dictionary<(int, int), int> routeWeights;
+        private CustomDictionary<(int, int), int> routeWeights;
         private Bitmap routesBitmap;
         private System.Windows.Forms.Timer chargeTimer;
 
@@ -26,7 +22,7 @@ namespace AirWar
             random = new Random();
             grafo = new Grafo();
             gameObjects = new LinkedList<Control>();
-            routeWeights = new Dictionary<(int, int), int>();
+            routeWeights = new CustomDictionary<(int, int), int>();
             AddRandomPortavionesAguaAndPortaviones();
             CreateRoutes();
             routesBitmap = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
@@ -170,7 +166,7 @@ namespace AirWar
                 {
                     grafo.AddArista(i, destino);
                     int weight = CalculateRouteWeight(i, destino);
-                    routeWeights[(i, destino)] = weight;
+                    routeWeights.Add((i, destino), weight);
                 }
             }
         }
