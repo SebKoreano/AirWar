@@ -219,20 +219,21 @@ namespace AirWar
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Crear aviones desde Portaviones y PortavionesAgua
-            Portaviones portaviones = new Portaviones();
-            portaviones.Location = new Point(100, 400);
-            this.Controls.Add(portaviones);
-            Avion avion1 = portaviones.CreateAvion();
-            aviones.Add(avion1);
-            avion1.BringToFront(); // Asegurar que el avión esté al frente
-
-            PortavionesAgua portavionesAgua = new PortavionesAgua();
-            portavionesAgua.Location = new Point(300, 400);
-            this.Controls.Add(portavionesAgua);
-            Avion avion2 = portavionesAgua.CreateAvion();
-            aviones.Add(avion2);
-            avion2.BringToFront(); // Asegurar que el avión esté al frente
+            foreach (Control control in gameObjects)
+            {
+                if (control is Portaviones portaviones)
+                {
+                    Avion avion = portaviones.CreateAvion();
+                    aviones.Add(avion);
+                    avion.BringToFront(); // Asegurar que el avión esté al frente
+                }
+                else if (control is PortavionesAgua portavionesAgua)
+                {
+                    Avion avion = portavionesAgua.CreateAvion();
+                    aviones.Add(avion);
+                    avion.BringToFront(); // Asegurar que el avión esté al frente
+                }
+            }
         }
 
         //Metodo para regular el tiempo de juego
