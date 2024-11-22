@@ -66,6 +66,11 @@ namespace AirWar
         // Crea una nueva instancia de Bala y la agrega al formulario
         private void CreateAndAddBala()
         {
+            if (charge / 300 < 1)
+            {
+                return;
+            }
+
             Bala bala = new Bala(charge / 300);
             bala.Location = new Point(15 + pistola1.Location.X + pistola1.Width / 2, pistola1.Location.Y);
             bala.Size = new Size(18, 32);
