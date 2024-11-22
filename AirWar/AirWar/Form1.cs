@@ -106,7 +106,10 @@ namespace AirWar
             Point location;
             do
             {
-                location = new Point(random.Next(0, this.ClientSize.Width - portavionesagua.Width), random.Next(0, this.ClientSize.Height - portavionesagua.Height));
+                location = new Point(
+                    random.Next(0, this.ClientSize.Width - portavionesagua.Width),
+                    random.Next(0, this.ClientSize.Height - portavionesagua.Height - 120)
+                );
             } while (IsOverlapping(location, portavionesagua.Size));
 
             portavionesagua.Location = location;
@@ -124,7 +127,10 @@ namespace AirWar
             Point location;
             do
             {
-                location = new Point(random.Next(0, this.ClientSize.Width - portaviones.Width), random.Next(0, this.ClientSize.Height - portaviones.Height));
+                location = new Point(
+                    random.Next(0, this.ClientSize.Width - portaviones.Width),
+                    random.Next(0, this.ClientSize.Height - portaviones.Height - 120)
+                );
             } while (IsOverlapping(location, portaviones.Size));
 
             portaviones.Location = location;
