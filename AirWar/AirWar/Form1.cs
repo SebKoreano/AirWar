@@ -223,12 +223,16 @@ namespace AirWar
             Portaviones portaviones = new Portaviones();
             portaviones.Location = new Point(100, 400);
             this.Controls.Add(portaviones);
-            aviones.Add(portaviones.CreateAvion());
+            Avion avion1 = portaviones.CreateAvion();
+            aviones.Add(avion1);
+            avion1.BringToFront(); // Asegurar que el avión esté al frente
 
             PortavionesAgua portavionesAgua = new PortavionesAgua();
             portavionesAgua.Location = new Point(300, 400);
             this.Controls.Add(portavionesAgua);
-            aviones.Add(portavionesAgua.CreateAvion());
+            Avion avion2 = portavionesAgua.CreateAvion();
+            aviones.Add(avion2);
+            avion2.BringToFront(); // Asegurar que el avión esté al frente
         }
 
         //Metodo para regular el tiempo de juego
