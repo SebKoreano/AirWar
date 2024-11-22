@@ -45,7 +45,7 @@
             pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.flecha;
-            pictureBox1.Location = new Point(12, 338);
+            pictureBox1.Location = new Point(12, 517);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(753, 85);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -62,7 +62,7 @@
             pistola1.BackgroundImage = (Image)resources.GetObject("pistola1.BackgroundImage");
             pistola1.BackgroundImageLayout = ImageLayout.None;
             pistola1.ForeColor = Color.Transparent;
-            pistola1.Location = new Point(347, 337);
+            pistola1.Location = new Point(254, 516);
             pistola1.Margin = new Padding(0, 5, 0, 5);
             pistola1.Name = "pistola1";
             pistola1.Size = new Size(83, 101);
@@ -116,7 +116,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(777, 450);
+            ClientSize = new Size(777, 629);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);

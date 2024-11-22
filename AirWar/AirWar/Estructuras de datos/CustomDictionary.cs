@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AirWar
 {
     // Clase que actúa como un diccionario personalizado usando listas enlazadas
