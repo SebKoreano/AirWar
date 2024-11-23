@@ -233,6 +233,9 @@ namespace AirWar
             {
                 MessageBox.Show("Game Over");
             }
+
+            // Detectar colisiones
+            Colision.DetectarColisiones(this);
         }
         private int CalculateRouteWeight(int origen, int destino)
         {
