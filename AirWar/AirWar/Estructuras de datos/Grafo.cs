@@ -2,45 +2,53 @@ namespace AirWar
 {
     public class Grafo
     {
-        private CustomDictionary<int, LinkedList<int>> adjList;
+        private CustomDictionary<int, LinkedList<int>> adyacencias;
+        private CustomDictionary<(int, int), int> routeWeights;
+        private CustomDictionary<int, Point> vertexPositions;
 
         public Grafo()
         {
-            adjList = new CustomDictionary<int, LinkedList<int>>();
+            adyacencias = new CustomDictionary<int, LinkedList<int>>();
+            routeWeights = new CustomDictionary<(int, int), int>();
+            vertexPositions = new CustomDictionary<int, Point>();
         }
 
-        // Añadir un vértice al grafo
-        public void AddVertice(int vertice)
+        public void AddVertice(int vertice, Point position)
         {
-            if (!adjList.ContainsKey(vertice))
+            if (!adyacencias.ContainsKey(vertice))
             {
-                adjList[vertice] = new LinkedList<int>();
+                adyacencias.Add(vertice, new LinkedList<int>());
+                vertexPositions.Add(vertice, position);
             }
         }
 
-        // Añadir una arista al grafo
-        public void AddArista(int origen, int destino)
+        public void AddArista(int origen, int destino, int weight)
         {
-            if (adjList.ContainsKey(origen) && adjList.ContainsKey(destino))
+            if (adyacencias.ContainsKey(origen) && adyacencias.ContainsKey(destino))
             {
-                adjList[origen].Add(destino);
+                adyacencias[origen].Add(destino);
+                routeWeights[(origen, destino)] = weight;
             }
         }
 
-        // Obtener la lista de adyacencia de un vértice
         public LinkedList<int> GetAdyacentes(int vertice)
         {
-            if (adjList.ContainsKey(vertice))
-            {
-                return adjList[vertice];
-            }
-            return new LinkedList<int>();
+            return adyacencias.ContainsKey(vertice) ? adyacencias[vertice] : new LinkedList<int>();
         }
 
-        // Obtener todos los vértices del grafo
         public IEnumerable<int> GetVertices()
         {
-            return adjList.Keys;
+            return adyacencias.Keys;
+        }
+
+        public int GetRouteWeight(int origen, int destino)
+        {
+            return routeWeights.ContainsKey((origen, destino)) ? routeWeights[(origen, destino)] : 0;
+        }
+
+        public Point GetVertexPosition(int vertice)
+        {
+            return vertexPositions.ContainsKey(vertice) ? vertexPositions[vertice] : Point.Empty;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace AirWar
         private System.Windows.Forms.Timer chargeTimer;
         private System.Windows.Forms.Timer avionTimer;
         private LinkedList<Avion> aviones;
+        private Core core = new Core();
 
         public Form1()
         {
@@ -37,12 +38,6 @@ namespace AirWar
             chargeTimer.Tick += ChargeTimer_Tick;
 
             aviones = new LinkedList<Avion>();
-
-            // Inicializar el Timer para mover los aviones
-            avionTimer = new System.Windows.Forms.Timer();
-            avionTimer.Interval = 50; // Intervalo de 50 ms
-            avionTimer.Tick += AvionTimer_Tick;
-            avionTimer.Start();
         }
 
         // Evento que se dispara al hacer clic en pictureBox1
@@ -129,7 +124,7 @@ namespace AirWar
         // Añade un portaviones en una posición aleatoria
         private void AddRandomPortaviones()
         {
-            Portaviones portaviones = new Portaviones();
+            Portaviones portaviones = new(grafo, gameObjects.Count);
             Point location;
             do
             {
@@ -166,7 +161,7 @@ namespace AirWar
         {
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                grafo.AddVertice(i);
+                grafo.AddVertice(i, gameObjects[i].Location);
             }
 
             for (int i = 0; i < gameObjects.Count; i++)
@@ -174,9 +169,8 @@ namespace AirWar
                 int destino = random.Next(0, gameObjects.Count);
                 if (destino != i)
                 {
-                    grafo.AddArista(i, destino);
                     int weight = CalculateRouteWeight(i, destino);
-                    routeWeights.Add((i, destino), weight);
+                    grafo.AddArista(i, destino, weight);
                 }
             }
         }
@@ -196,7 +190,7 @@ namespace AirWar
                         g.DrawLine(pen, origen, destinoPoint);
 
                         // Dibujar el peso de la ruta
-                        int weight = routeWeights[(vertice, destino)];
+                        int weight = grafo.GetRouteWeight(vertice, destino);
                         Point midPoint = new Point((origen.X + destinoPoint.X) / 2, (origen.Y + destinoPoint.Y) / 2);
                         DrawWeightLabel(midPoint, weight);
                     }
@@ -223,15 +217,9 @@ namespace AirWar
             {
                 if (control is Portaviones portaviones)
                 {
-                    Avion avion = portaviones.CreateAvion();
-                    aviones.Add(avion);
-                    avion.BringToFront(); // Asegurar que el avión esté al frente
                 }
                 else if (control is PortavionesAgua portavionesAgua)
                 {
-                    Avion avion = portavionesAgua.CreateAvion();
-                    aviones.Add(avion);
-                    avion.BringToFront(); // Asegurar que el avión esté al frente
                 }
             }
         }
@@ -268,24 +256,6 @@ namespace AirWar
             else
             {
                 chargeTimer.Stop();
-            }
-        }
-
-        private void AvionTimer_Tick(object sender, EventArgs e)
-        {
-            var avionesToRemove = new LinkedList<Avion>();
-            foreach (var avion in aviones)
-            {
-                avion.Location = new Point(avion.Location.X, avion.Location.Y - 5);
-                if (avion.Location.Y + avion.Height < 0)
-                {
-                    this.Controls.Remove(avion);
-                    avionesToRemove.Add(avion);
-                }
-            }
-            foreach (var avion in avionesToRemove)
-            {
-                aviones.Remove(avion);
             }
         }
     }
