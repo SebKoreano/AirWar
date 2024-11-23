@@ -46,6 +46,35 @@ namespace AirWar
             Count++;
         }
 
+        public bool Remove(T data)
+        {
+            if (head == null)
+            {
+                return false;
+            }
+
+            if (head.Data != null && head.Data.Equals(data))
+            {
+                head = head.Next;
+                Count--;
+                return true;
+            }
+
+            Node<T>? current = head;
+            while (current.Next != null)
+            {
+                if (current.Next.Data != null && current.Next.Data.Equals(data))
+                {
+                    current.Next = current.Next.Next;
+                    Count--;
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
+        }
+
         public bool Contains(T data)
         {
             Node<T>? current = head;

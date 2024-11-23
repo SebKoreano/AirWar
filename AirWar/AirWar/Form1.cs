@@ -14,7 +14,7 @@ namespace AirWar
         private Bitmap routesBitmap;
         private System.Windows.Forms.Timer chargeTimer;
         private System.Windows.Forms.Timer avionTimer;
-        private List<Avion> aviones;
+        private LinkedList<Avion> aviones;
 
         public Form1()
         {
@@ -36,7 +36,7 @@ namespace AirWar
             chargeTimer.Interval = 10; // Intervalo de 10 ms
             chargeTimer.Tick += ChargeTimer_Tick;
 
-            aviones = new List<Avion>();
+            aviones = new LinkedList<Avion>();
 
             // Inicializar el Timer para mover los aviones
             avionTimer = new System.Windows.Forms.Timer();
@@ -273,15 +273,20 @@ namespace AirWar
 
         private void AvionTimer_Tick(object sender, EventArgs e)
         {
+            var avionesToRemove = new LinkedList<Avion>();
             foreach (var avion in aviones)
             {
                 avion.Location = new Point(avion.Location.X, avion.Location.Y - 5);
                 if (avion.Location.Y + avion.Height < 0)
                 {
                     this.Controls.Remove(avion);
+                    avionesToRemove.Add(avion);
                 }
             }
-            aviones.RemoveAll(a => a.Location.Y + a.Height < 0);
+            foreach (var avion in avionesToRemove)
+            {
+                aviones.Remove(avion);
+            }
         }
     }
 }
